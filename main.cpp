@@ -84,18 +84,15 @@ void drawPyramid(int angleNumber, double radius, int size, int colored) {
         angle += angleRadian;
     }
 
-    int start = 1;
-    for (int f = 0, s = angleNumber - 1, c = 0; s < angleNumber; ++f, ++s, ++c) {
+    for (int f = angleNumber - 1, s = 0, c = 0; s < angleNumber; ++f, ++s, ++c) {
         glBegin(GL_TRIANGLE_STRIP);
         glColor3fv(colored == 1 ? colors[c] : baseColor);
         glVertex3dv(base[f]);
         glVertex3dv(base[s]);
         glVertex3d(0, up, 0);
         glEnd();
-        if (start == 1) {
-            start = 0;
+        if (f == angleNumber - 1) {
             f = -1;
-            s = 0;
         }
     }
 }
